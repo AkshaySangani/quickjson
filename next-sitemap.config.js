@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-    siteUrl: "https://www.yoursite.com",
+    siteUrl: "https://www.quickjson.net",
     generateRobotsTxt: true,
     sitemapSize: 7000,
     changefreq: "daily",

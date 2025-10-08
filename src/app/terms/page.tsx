@@ -9,7 +9,7 @@ export const metadata = {
         <h1>Terms of Use</h1>
         <p>
           By using JSON Tools, you agree to use it responsibly and at your own
-          risk. This service is provided "as is" without any warranties.
+          risk. This service is provided &ldquo;as is&ldquo; without any warranties.
         </p>
       </article>
     )
