@@ -3,9 +3,10 @@ import "./globals.css"
 import { Providers } from "./providers"
 import Link from "next/link"
 import ThemeToggle from "../components/ThemeToggal"
+import Script from "next/script"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.yoursite.com"),
+  metadataBase: new URL("https://www.quickjson.net"),
   title: {
     default: "Free Online JSON Tools",
     template: "%s | Free Online JSON Tools",
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   keywords: ["json formatter", "json validator", "json minifier", "json tools online"],
   openGraph: {
     type: "website",
-    url: "https://www.yoursite.com",
+    url: "https://www.quickjson.net",
     title: "Free Online JSON Tools",
     description:
       "Beautify, minify, and validate JSON online with fast browser-based tools.",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     description: "JSON Formatter, Validator, Minifier, and more.",
   },
   alternates: {
-    canonical: "https://www.yoursite.com",
+    canonical: "https://www.quickjson.net",
   },
 }
 
@@ -73,10 +74,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "JSON Tools Online",
-              url: "https://www.yoursite.com",
+              url: "https://www.quickjson.net",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://www.yoursite.com/search?q={search_term_string}",
+                target: "https://www.quickjson.net/search?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
               publisher: {
@@ -86,19 +87,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXX');
-    `,
-          }}
+        {/* ✅ Google Analytics Script */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZM1XJ8PJCQ"
+          strategy="afterInteractive"
         />
-
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZM1XJ8PJCQ');
+          `}
+        </Script>
       </body>
     </html>
   )
