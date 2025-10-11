@@ -1,7 +1,5 @@
 
 import JsonFormatter from "./JSONCodeMirror";
-import JsonFormatterClient from "./JsonFormatterClient"
-import JsonMindMap from "./JSONTreeView";
 
 // ---------------- Metadata ----------------
 export const metadata = {
