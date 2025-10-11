@@ -45,3 +45,6 @@ public/sitemap*.xml
 public/robots.txt
 public/fonts/
 public/roboto*
+
+# package-lock.json
+package-lock.json

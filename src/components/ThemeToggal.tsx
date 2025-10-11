@@ -2,6 +2,7 @@
 
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
+import SunMoonToggle from "./SunMoonToggle"
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme()
@@ -11,11 +12,6 @@ export default function ThemeToggle() {
   if (!mounted) return null
 
   return (
-    <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="px-3 py-1 rounded border border-gray-300 dark:border-gray-700 text-sm"
-    >
-      {theme === "dark" ? "Light" : "Dark"}
-    </button>
+    <SunMoonToggle setTheme={setTheme} theme={theme} />
   )
 }

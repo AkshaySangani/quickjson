@@ -6,31 +6,52 @@ import ThemeToggle from "../components/ThemeToggal"
 import Script from "next/script"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.quickjson.net"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://quickjson.net"),
   title: {
-    default: "Free Online JSON Tools",
-    template: "%s | Free Online JSON Tools",
+    default: "QuickJSON – Free Online JSON Formatter, Validator & Tools",
+    template: "%s | QuickJSON",
   },
   description:
-    "Collection of free online JSON utilities — JSON Formatter, Validator, Minifier and more. Runs 100% in your browser.",
-  keywords: ["json formatter", "json validator", "json minifier", "json tools online"],
+    "QuickJSON offers free, fast, and privacy-friendly online JSON tools — format, validate, minify, and visualize JSON directly in your browser.",
+  keywords: [
+    "quickjson",
+    "json formatter",
+    "json validator",
+    "json minifier",
+    "json viewer",
+    "online json tools",
+    "format json online",
+    "validate json online",
+    "minify json online",
+  ],
   openGraph: {
     type: "website",
-    url: "https://www.quickjson.net",
-    title: "Free Online JSON Tools",
+    url: process.env.NEXT_PUBLIC_APP_URL || "https://quickjson.net",
+    title: "QuickJSON – Free Online JSON Formatter, Validator & Tools",
     description:
-      "Beautify, minify, and validate JSON online with fast browser-based tools.",
-    siteName: "JSON Tools Online",
+      "Beautify, validate, and minify JSON easily with QuickJSON — fast, free, and browser-based.",
+    siteName: "QuickJSON",
+    images: [
+      {
+        url: "/og-image.png", // Optional — add your OG image path here
+        width: 1200,
+        height: 630,
+        alt: "QuickJSON – Free Online JSON Tools",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Online JSON Tools",
-    description: "JSON Formatter, Validator, Minifier, and more.",
+    title: "QuickJSON – Free Online JSON Formatter, Validator & Tools",
+    description:
+      "QuickJSON provides free online tools to format, validate, and minify JSON instantly in your browser.",
+    images: ["/og-image.png"], // Optional
   },
   alternates: {
-    canonical: "https://www.quickjson.net",
+    canonical: process.env.NEXT_PUBLIC_APP_URL || "https://quickjson.net",
   },
-}
+};
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -47,12 +68,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Link>
                 <Link href="/json-formatter" className="hover:underline">
                   JSON Formatter Online
-                </Link>
-                <Link href="/privacy-policy" className="hover:underline">
-                  Privacy
-                </Link>
-                <Link href="/terms" className="hover:underline">
-                  Terms
                 </Link>
                 <ThemeToggle />
               </div>
@@ -83,16 +98,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "JSON Tools Online",
-              url: "https://www.quickjson.net",
+              name: "Quick JSON Tools",
+              url: process.env.NEXT_PUBLIC_APP_URL,
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://www.quickjson.net/search?q={search_term_string}",
+                target: `${process.env.NEXT_PUBLIC_APP_URL}/search?q={search_term_string}`,
                 "query-input": "required name=search_term_string",
               },
               publisher: {
                 "@type": "Organization",
-                name: "JSON Tools Online",
+                name: "Quick JSON Tools",
               },
             }),
           }}

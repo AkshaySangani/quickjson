@@ -1,12 +1,16 @@
 
+import JsonFormatter from "./JSONCodeMirror";
 import JsonFormatterClient from "./JsonFormatterClient"
+import JsonMindMap from "./JSONTreeView";
 
 // ---------------- Metadata ----------------
 export const metadata = {
-  title: "JSON Formatter Online | Beautify, Minify, Validate, Stringify & Reverse JSON",
+  title:
+    "QuickJSON Formatter | Beautify, Minify, Validate, Stringify & Reverse JSON Online",
   description:
-    "Free JSON Formatter online tool. Beautify, minify, validate, stringify, reverse, and view JSON in tree format. Fast, private, and secure — runs entirely in your browser.",
+    "QuickJSON offers a free online JSON formatter tool to beautify, minify, validate, stringify, reverse, and view JSON in a tree structure. 100% browser-based, fast, and secure.",
   keywords: [
+    "quickjson",
     "json formatter",
     "json beautifier",
     "json minifier",
@@ -16,28 +20,86 @@ export const metadata = {
     "json to object",
     "reverse json",
     "online json tools",
+    "format json online",
   ],
   alternates: {
-    canonical: "https://www.yoursite.com/json-formatter",
+    canonical: `${process.env.NEXT_PUBLIC_APP_URL}/json-formatter`,
   },
-}
+};
+
 
 // ---------------- Tools Definition ----------------
 const tools = [
-  { name: "Beautify JSON", id: "beautify", description: "Beautify JSON with indentation for easy readability." },
-  { name: "Minify JSON", id: "minify", description: "Compress JSON to a single line for faster storage or transmission." },
-  { name: "Validate JSON", id: "validate", description: "Check JSON for syntax errors and validate its format." },
-  { name: "JSON Tree Viewer", id: "tree-view", description: "View JSON data in an expandable tree structure." },
-  { name: "Stringify to JSON", id: "stringify-to-json", description: "Convert a JavaScript object into a JSON string." },
-  { name: "JSON to Object", id: "json-to-object", description: "Convert a JSON string back into a JavaScript object." },
-  { name: "Reverse JSON", id: "reverse", description: "Reverse arrays or object keys/values in JSON." },
-]
+  {
+    name: "QuickJSON Beautifier",
+    id: "beautify",
+    description:
+      "Beautify and format JSON with proper indentation for improved readability and structure.",
+  },
+  {
+    name: "QuickJSON Minifier",
+    id: "minify",
+    description:
+      "Minify and compress JSON into a single line for faster performance, sharing, or storage.",
+  },
+  {
+    name: "QuickJSON Validator",
+    id: "validate",
+    description:
+      "Instantly validate JSON and detect syntax errors to ensure your data is properly structured.",
+  },
+  {
+    name: "QuickJSON Tree Viewer",
+    id: "tree-view",
+    description:
+      "Visualize JSON data in an interactive, expandable tree view for easy navigation and analysis.",
+  },
+  {
+    name: "Stringify to JSON",
+    id: "stringify-to-json",
+    description:
+      "Convert JavaScript objects into JSON strings instantly using QuickJSON’s stringify tool.",
+  },
+  {
+    name: "JSON to Object",
+    id: "json-to-object",
+    description:
+      "Parse JSON strings back into JavaScript objects quickly and accurately with QuickJSON.",
+  },
+  {
+    name: "Reverse JSON",
+    id: "reverse",
+    description:
+      "Reverse JSON arrays or flip object keys and values easily with QuickJSON’s reverse tool.",
+  },
+];
+
 
 // ---------------- Page Component ----------------
 export default function JsonFormatterPage() {
   return (
     <>
-      <JsonFormatterClient />
+    <JsonFormatter/>
+    {/* <JsonMindMap jsonData={{
+  fruits: {
+    Apple: {
+      color: "#FF0000",
+      details: { type: "Pome", season: "Fall" },
+      nutrients: { calories: 52, fiber: "2.4g", vitaminC: "4.6mg" },
+    },
+    Banana: {
+      color: "#FFFF00",
+      details: { type: "Berry", season: "Year-round" },
+      nutrients: { calories: 89, fiber: "2.6g", potassium: "358mg" },
+    },
+    Orange: {
+      color: "#FFA500",
+      details: { type: "Citrus", season: "Winter" },
+      nutrients: { calories: 47, fiber: "2.4g", vitaminC: "53.2mg" },
+    },
+  },
+}}/> */}
+      {/* <JsonFormatterClient /> */}
 
       {/* ---------------- Structured Data for SEO ---------------- */}
       <script
@@ -49,7 +111,7 @@ export default function JsonFormatterPage() {
             name: "JSON Formatter Online",
             applicationCategory: "Utility",
             operatingSystem: "Any",
-            url: "https://www.yoursite.com/json-formatter",
+            url: `${process.env.NEXT_PUBLIC_APP_URL}/json-formatter`,
             author: {
               "@type": "Person",
               name: "Your Name",
@@ -66,7 +128,7 @@ export default function JsonFormatterPage() {
               "@type": "ListItem",
               position: index + 1,
               name: tool.name,
-              url: `https://www.yoursite.com/json-formatter#${tool.id}`,
+              url: `${process.env.NEXT_PUBLIC_APP_URL}/json-formatter#${tool.id}`,
               description: tool.description,
             })),
             keywords: tools.flatMap((tool) => tool.name.toLowerCase().split(" ")),
