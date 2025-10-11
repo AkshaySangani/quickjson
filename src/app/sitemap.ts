@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const urls = [
     `${baseUrl}/`,
     `${baseUrl}/json-formatter`,
+    `${baseUrl}/tools`,
     // Add other pages here
   ]
 
