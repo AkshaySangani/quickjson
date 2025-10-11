@@ -61,9 +61,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <main className="container mx-auto px-4 py-8">{children}</main>
 
-          <footer className="border-t border-gray-200 dark:border-gray-800 py-6 text-center text-sm text-gray-500">
-            © {new Date().getFullYear()} JSON Tools. All rights reserved.
+          <footer className="border-t border-gray-200 dark:border-gray-800 py-4 text-center text-sm text-gray-500">
+            <div className="flex justify-center flex-wrap gap-4 mb-2">
+              <Link href="/privacy-policy" className="hover:underline">
+                Privacy
+              </Link>
+              <Link href="/terms" className="hover:underline">
+                Terms
+              </Link>
+            </div>
+            <div>© {new Date().getFullYear()} QuickJSON. All rights reserved.</div>
           </footer>
+
+
         </Providers>
 
         {/* ✅ Global Structured Data for whole site */}
