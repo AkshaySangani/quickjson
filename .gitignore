@@ -42,9 +42,7 @@ next-env.d.ts
 
 # Ignore generated SEO files
 public/sitemap*.xml
-public/robots.txt
 public/fonts/
-public/roboto*
 
 # package-lock.json
 package-lock.json
