@@ -1,153 +1,174 @@
-export const metadata = {
-  title: "QuickJSON – Free Online JSON Formatter, Validator, Minifier & Viewer",
+import Link from "next/link"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "JSON Tools – Format, Validate, Minify & View JSON Online | QuickJSON",
   description:
-    "QuickJSON is your fast, free, and private online JSON toolset — format, validate, minify, and visualize JSON instantly right in your browser.",
+    "Discover all free online JSON tools by QuickJSON — format, validate, beautify, minify, and view JSON instantly in your browser. 100% private and secure.",
   keywords: [
-    "QuickJSON",
-    "JSON formatter online",
-    "JSON validator",
-    "JSON minifier",
-    "JSON viewer",
-    "free JSON tools",
-    "online JSON editor",
-    "format JSON",
-    "validate JSON",
-    "minify JSON",
-    "view JSON",
-    "quick json tools",
+    "json tools",
+    "json formatter",
+    "json beautifier",
+    "json validator",
+    "json minifier",
+    "json viewer",
+    "format json online",
+    "validate json online",
+    "online json utilities",
   ],
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_APP_URL,
+    canonical: "https://www.quickjson.net/tools",
   },
-};
-
-
-const tools = [
-  {
-    name: "QuickJSON Formatter",
+  openGraph: {
+    title: "JSON Tools – Format, Validate, Minify & View JSON Online",
     description:
-      "Format, beautify, and minify JSON instantly using QuickJSON’s fast online formatter.",
-    url: "/json-formatter",
-    keywords: [
-      "quickjson formatter",
-      "online json beautifier",
-      "pretty print json",
-      "format json online",
+      "Access a complete suite of free JSON tools: Formatter, Validator, Minifier, and Viewer — all browser-based and privacy-safe.",
+    url: "https://www.quickjson.net/tools",
+    siteName: "QuickJSON",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "JSON Tools Overview",
+      },
     ],
   },
-  {
-    name: "QuickJSON Validator",
-    description:
-      "Validate and check JSON syntax errors in real time with QuickJSON’s free online validator.",
-    url: "/json-formatter#validate",
-    keywords: [
-      "quickjson validator",
-      "validate json online",
-      "json syntax checker",
-      "check json validity",
-    ],
-  },
-  {
-    name: "QuickJSON Minifier",
-    description:
-      "Compress and minify JSON into a single line for faster sharing, storage, or transmission.",
-    url: "/json-formatter#minify",
-    keywords: [
-      "quickjson minifier",
-      "minify json online",
-      "compress json",
-      "compact json",
-    ],
-  },
-  {
-    name: "QuickJSON Tree Viewer",
-    description:
-      "Explore your JSON data visually in an interactive tree view with QuickJSON.",
-    url: "/json-formatter#tree-view",
-    keywords: [
-      "quickjson tree viewer",
-      "json visualizer",
-      "view json online",
-      "json explorer",
-    ],
-  },
-  {
-    name: "Stringify to JSON",
-    description:
-      "Easily convert JavaScript objects into JSON strings using QuickJSON’s stringify tool.",
-    url: "/json-formatter#stringify-to-json",
-    keywords: [
-      "stringify json online",
-      "js object to json",
-      "convert object to json",
-    ],
-  },
-  {
-    name: "JSON to Object",
-    description:
-      "Parse JSON strings into JavaScript objects instantly using QuickJSON’s parser tool.",
-    url: "/json-formatter#json-to-object",
-    keywords: [
-      "json to object",
-      "parse json online",
-      "json parser",
-      "convert json to object",
-    ],
-  },
-  {
-    name: "Reverse JSON",
-    description:
-      "Reverse JSON arrays or invert object keys and values easily with QuickJSON’s reverse tool.",
-    url: "/json-formatter#reverse",
-    keywords: [
-      "reverse json",
-      "invert json",
-      "reverse json array",
-      "flip json keys values",
-    ],
-  },
-];
-
+}
 
 export default function ToolsPage() {
-    return (
-        <section className="space-y-8 max-w-4xl mx-auto">
-            <h1 className="text-3xl font-bold text-center">Online Quick JSON Tools</h1>
-            <p className="text-gray-600 dark:text-gray-400 text-center">
-                QuickJSON is your fast, free, and private online JSON toolset — format, validate, minify, and visualize JSON instantly right in your browser.
-            </p>
+  const tools = [
+    {
+      title: "JSON Formatter",
+      description:
+        "Beautify and format your JSON instantly. Make complex JSON readable and properly indented.",
+      link: "/json-formatter",
+    },
+    {
+      title: "JSON Validator",
+      description:
+        "Check your JSON for syntax errors and validate structure before sending or saving.",
+      link: "/json-validator",
+    },
+    {
+      title: "JSON Minifier",
+      description:
+        "Reduce JSON size by removing whitespace and newlines for faster performance.",
+      link: "/json-minify",
+    },
+    {
+      title: "JSON Viewer",
+      description:
+        "Visualize and explore JSON data hierarchically. Perfect for debugging APIs and configurations.",
+      link: "/json-tree-view",
+    },
+    {
+      title: "JSON Parser",
+      description:
+        "Parse JSON text into readable data structures and verify nested elements easily.",
+      link: "/json-formatter",
+    },
+  ]
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {tools.map((tool) => (
-                    <a
-                        key={tool.name}
-                        href={tool.url}
-                        className="block p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow bg-gray-50 dark:bg-gray-900"
-                    >
-                        <h2 className="text-xl text-black dark:text-gray-400 font-semibold mb-2">{tool.name}</h2>
-                        <p className="text-gray-600 dark:text-gray-400">{tool.description}</p>
-                    </a>
-                ))}
-            </div>
+  return (
+    <>
+      <section className="max-w-6xl mx-auto px-4 py-10">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Free Online JSON Tools
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            A collection of powerful and privacy-focused tools to format, validate, and analyze JSON
+            data. All tools run locally in your browser — your JSON never leaves your device.
+          </p>
+        </div>
+      </section>
+      <section id="tools" className="">
+        {/* ✅ Tools Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[
+            { title: "JSON Formatter", link: "/json-formatter" },
+            { title: "JSON Beautifier", link: "/json-beautify" },
+            { title: "JSON Minifier", link: "/json-minify" },
+            { title: "JSON Validator", link: "/json-validator" },
+            { title: "JSON Tree Viewer", link: "/json-tree-view" },
+          ].map((tool) => (
+            <a
+              key={tool.title}
+              href={tool.link}
+              className="p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all bg-gray-50 dark:bg-gray-900"
+            >
+              <h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">
+                {tool.title}
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400">
+                Try the {tool.title} now — 100% free, fast, and browser-based.
+              </p>
+            </a>
+          ))}
+        </div>
+      </section>
 
-            {/* Structured Data for Tools Page */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "ItemList",
-                        itemListElement: tools.map((tool, index) => ({
-                            "@type": "ListItem",
-                            position: index + 1,
-                            url: `${process.env.NEXT_PUBLIC_APP_URL}${tool.url}`,
-                            name: tool.name,
-                            description: tool.description,
-                            keywords: tool.keywords,
-                        })),
-                    }),
-                }}
-            />
-        </section>
-    )
+      {/* ✅ SEO Section */}
+      <article className="mt-16 text-gray-700 dark:text-gray-300 space-y-6 leading-relaxed">
+        <h2 className="text-2xl font-semibold">Why Use JSON Tools?</h2>
+        <p>
+          JSON (JavaScript Object Notation) is a lightweight data-interchange format widely used in
+          web APIs and configuration files. The QuickJSON toolkit provides developers with
+          essential utilities to manipulate and debug JSON efficiently.
+        </p>
+
+        <h2 className="text-2xl font-semibold">Our Free JSON Utilities</h2>
+        <ul className="list-disc ml-6 space-y-2">
+          <li>
+            <strong>JSON Formatter</strong> – Beautify your JSON instantly for better readability.
+          </li>
+          <li>
+            <strong>JSON Validator</strong> – Check and correct syntax errors before using your data.
+          </li>
+          <li>
+            <strong>JSON Minifier</strong> – Optimize your JSON by reducing file size.
+          </li>
+          <li>
+            <strong>JSON Viewer</strong> – Inspect and explore nested JSON visually.
+          </li>
+        </ul>
+
+        <h2 className="text-2xl font-semibold">Is It Safe?</h2>
+        <p>
+          Absolutely. All processing is performed in your browser using JavaScript — no data is sent
+          to our servers, ensuring complete privacy and security.
+        </p>
+
+        <p>
+          Looking for the main formatter? Try our{" "}
+          <Link href="/" className="text-blue-600 hover:underline">
+            JSON Formatter
+          </Link>{" "}
+          — it’s the most popular tool in our collection.
+        </p>
+      </article>
+
+      {/* ✅ Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "QuickJSON Tools",
+            description:
+              "A free collection of online JSON utilities including formatter, validator, minifier, and viewer.",
+            url: "https://www.quickjson.net/tools",
+            itemListElement: tools.map((tool, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: tool.title,
+              url: `https://www.quickjson.net${tool.link}`,
+            })),
+          }),
+        }}
+      />
+    </ >
+  )
 }
