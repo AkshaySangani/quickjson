@@ -8,7 +8,7 @@ import Script from "next/script"
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.quickjson.net"),
   title: {
-    default: "JSON Formatter Online – Free JSON Beautifier, Validator & Minifier",
+    default: "JSON Formatter Online - Free JSON Beautifier, Validator & Minifier",
     template: "%s | QuickJSON",
   },
   description:
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://www.quickjson.net",
-    title: "JSON Formatter Online – Free Beautifier, Validator & Minifier",
+    title: "JSON Formatter Online - Free Beautifier, Validator & Minifier",
     description:
       "Instantly format, validate, and beautify JSON with this free online JSON Formatter. 100% private and browser-based.",
     siteName: "QuickJSON",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "JSON Formatter Online – Free & Fast JSON Beautifier",
+    title: "JSON Formatter Online - Free & Fast JSON Beautifier",
     description: "Beautify, minify, and validate JSON instantly in your browser.",
     images: ["/og-image.png"],
   },
@@ -226,6 +226,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-ZM1XJ8PJCQ');
           `}
         </Script>
+
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1776553000817606"
+          crossOrigin="anonymous"></Script>
       </body>
     </html>
   )
