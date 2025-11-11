@@ -4,6 +4,7 @@ import { Providers } from "./providers"
 import Link from "next/link"
 import ThemeToggle from "../components/ThemeToggal"
 import Script from "next/script"
+import AdSense from "@/components/AdSense"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.quickjson.net"),
@@ -56,8 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1776553000817606"
-          crossOrigin="anonymous" strategy="afterInteractive" />
+        <AdSense pubId="1776553000817606" />
       </head>
       <body className="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300">
         <Providers>
