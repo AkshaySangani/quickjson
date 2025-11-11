@@ -4,7 +4,7 @@ import JsonFormatter from "@/components/JSONCodeMirror"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "JSON Formatter – Format & Beautify JSON Online | QuickJSON",
+  title: "JSON Formatter - Format & Beautify JSON Online | QuickJSON",
   description:
     "Free online JSON Formatter to format, beautify, and view JSON data easily. QuickJSON lets you format JSON directly in your browser with no data upload.",
   keywords: [

@@ -4,7 +4,7 @@ import JsonFormatter from "../components/JSONCodeMirror"
 
 export const metadata: Metadata = {
   title:
-    "JSON Formatter | Free Online JSON Beautifier, Validator & Minifier – QuickJSON",
+    "JSON Formatter | Free Online JSON Beautifier, Validator - QuickJSON",
   description:
     "Format, beautify, minify, and validate JSON instantly with our free online JSON Formatter. QuickJSON is fast, secure, and runs completely in your browser.",
   keywords: [
@@ -15,12 +15,20 @@ export const metadata: Metadata = {
     "json minifier",
     "json viewer",
     "online json tools",
+    "quickjson",
+    "quick json",
+    "free online json formatter",
+    "best json formatter",
+    "json formatter online",
+    "json formatter tool",
+    "json formatter tool online",
+    "json formatter tool online free",
   ],
   alternates: {
     canonical: "https://www.quickjson.net/",
   },
   openGraph: {
-    title: "JSON Formatter – Free Online Beautifier & Validator",
+    title: "JSON Formatter - Free Online Beautifier & Validator",
     description:
       "Free online JSON formatter and beautifier. Format and validate JSON data instantly with QuickJSON.",
     url: "https://www.quickjson.net/",
