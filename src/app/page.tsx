@@ -51,7 +51,7 @@ export default function HomePage() {
       {/* ✅ Hero Section */}
       <header className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
-          JSON Formatter – Free Online Beautifier & Validator
+          JSON Formatter - Free Online JSON Beautifier & Validator
         </h1>
         <p className="text-lg max-w-3xl mx-auto">
           Paste your JSON below to format, beautify, validate, and minify instantly.
@@ -170,7 +170,7 @@ export default function HomePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            name: "QuickJSON Formatter",
+            name: "JSON Formatter",
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Any",
             offers: {
