@@ -5,7 +5,6 @@ import { Providers } from "./providers";
 import Link from "next/link";
 import ThemeToggle from "../components/ThemeToggal";
 import Script from "next/script";
-import AdSense from "@/components/AdSense";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.quickjson.net"),
@@ -60,11 +59,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* AdSense verification script — MUST be server-rendered in <head> */}
         <meta name="google-adsense-account" content="ca-pub-1776553000817606" />
-        <script
-          async
+
+        <script async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1776553000817606"
           crossOrigin="anonymous"
         />
+
       </head>
 
       <body className="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300">
@@ -170,8 +170,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               <div className="border-t border-gray-300 dark:border-gray-800 mt-8 pt-4 text-center text-sm text-gray-500">
                 {/* <div className="mb-4"> */}
-                  {/* Footer ad (D) */}
-                  {/* <AdSense slot="footer-ad" /> */}
+                {/* Footer ad (D) */}
+                {/* <AdSense slot="footer-ad" /> */}
                 {/* </div> */}
                 © {new Date().getFullYear()} QuickJSON. All rights reserved.
               </div>
