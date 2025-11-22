@@ -2,11 +2,6 @@
 User-agent: *
 Allow: /
 
-# Disallow search engines from indexing certain development or system routes (optional)
-Disallow: /api/
-Disallow: /_next/
-Disallow: /assets/
-
 # Host
 Host: https://www.quickjson.net
 

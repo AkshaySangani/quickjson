@@ -1,10 +1,11 @@
-import type { Metadata } from "next"
-import "./globals.css"
-import { Providers } from "./providers"
-import Link from "next/link"
-import ThemeToggle from "../components/ThemeToggal"
-import Script from "next/script"
-import AdSense from "@/components/AdSense"
+// app/layout.tsx
+import type { Metadata } from "next";
+import "./globals.css";
+import { Providers } from "./providers";
+import Link from "next/link";
+import ThemeToggle from "../components/ThemeToggal";
+import Script from "next/script";
+import AdSense from "@/components/AdSense";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.quickjson.net"),
@@ -51,17 +52,24 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   authors: [{ name: "QuickJSON" }],
-}
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-      <meta name="google-adsense-account" content="ca-pub-1776553000817606" />
+        {/* AdSense verification script — MUST be server-rendered in <head> */}
+        <meta name="google-adsense-account" content="ca-pub-1776553000817606" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1776553000817606"
+          crossOrigin="anonymous"
+        />
       </head>
+
       <body className="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300">
         <Providers>
-          {/* ✅ Header */}
+          {/* Header */}
           <header className="border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur">
             <nav
               className="container mx-auto flex flex-wrap items-center justify-between px-4 py-4"
@@ -74,6 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               >
                 QuickJSON
               </Link>
+
               <div className="flex gap-6 items-center text-sm font-medium">
                 <Link href="/json-formatter" className="hover:underline" title="Online JSON Formatter">
                   JSON Formatter
@@ -81,7 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/tools" className="hover:underline" title="All Developer Tools">
                   Tools
                 </Link>
-                <Link href="/about" className="hover:underline" title="About QuickJSON">
+                <Link href="/about" className="hover:underline" title="About">
                   About
                 </Link>
                 <ThemeToggle />
@@ -89,14 +98,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </nav>
           </header>
 
-          {/* ✅ Main content */}
+          {/* Top banner ad (A) - server-rendered component so ad slot is present */}
+          {/* <div className="container mx-auto px-4 mt-4">
+            <div className="flex justify-center">
+              <AdSense slot="top-banner" />
+            </div>
+          </div> */}
+
+          {/* Main container: children contains page content (page.tsx) */}
           <main className="container mx-auto px-4 py-10">{children}</main>
 
-          {/* ✅ SEO Footer */}
+          {/* Footer (includes footer ad D) */}
           <footer className="border-t border-gray-200 dark:border-gray-800 py-10 bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
             <div className="container mx-auto px-4">
               <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
-                {/* Column 1 */}
                 <div>
                   <h3 className="font-semibold text-lg mb-3">QuickJSON</h3>
                   <p className="text-sm leading-relaxed">
@@ -105,7 +120,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   </p>
                 </div>
 
-                {/* Column 2 */}
                 <div>
                   <h4 className="font-semibold text-lg mb-3">Quick Links</h4>
                   <ul className="space-y-2">
@@ -132,7 +146,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   </ul>
                 </div>
 
-                {/* Column 3 */}
                 <div>
                   <h4 className="font-semibold text-lg mb-3">Legal</h4>
                   <ul className="space-y-2">
@@ -156,13 +169,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
 
               <div className="border-t border-gray-300 dark:border-gray-800 mt-8 pt-4 text-center text-sm text-gray-500">
+                {/* <div className="mb-4"> */}
+                  {/* Footer ad (D) */}
+                  {/* <AdSense slot="footer-ad" /> */}
+                {/* </div> */}
                 © {new Date().getFullYear()} QuickJSON. All rights reserved.
               </div>
             </div>
           </footer>
         </Providers>
 
-        {/* ✅ Global Structured Data */}
+        {/* Global structured data (Website + Organization) - single place (no duplicates) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -197,30 +214,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: "QuickJSON",
               url: "https://www.quickjson.net",
               logo: "https://www.quickjson.net/logo.png",
-              sameAs: [
-                "https://twitter.com/quickjson",
-                "https://github.com/AkshaySangani/quickjson",
-              ],
+              sameAs: ["https://twitter.com/quickjson", "https://github.com/AkshaySangani/quickjson"],
             }),
           }}
         />
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://www.quickjson.net/" },
-                { "@type": "ListItem", position: 2, name: "JSON Formatter", item: "https://www.quickjson.net/json-formatter" },
-              ],
-            }),
-          }}
-        />
-
-
-        {/* ✅ Google Analytics */}
+        {/* Google Analytics */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-ZM1XJ8PJCQ" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
@@ -230,8 +229,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-ZM1XJ8PJCQ');
           `}
         </Script>
-
       </body>
     </html>
-  )
+  );
 }
