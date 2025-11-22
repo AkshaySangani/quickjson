@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 declare global {
   interface Window {
@@ -9,11 +9,21 @@ declare global {
 }
 
 export default function AdSense({ slot, style }: { slot: string; style?: React.CSSProperties }) {
+    const adRef = useRef<HTMLModElement>(null);
+
   useEffect(() => {
+    const el = adRef.current;
+    if (!el) return;
+
+    // ❗ Don't load ad if container width is zero
+    const width = el.offsetWidth;
+    if (width === 0) {
+      console.warn("Ad skipped (width = 0) for slot:", slot);
+      return;
+    }
+
     try {
-      if (typeof window !== "undefined") {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      }
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (err) {
       console.error("AdSense error:", err);
     }
@@ -21,6 +31,7 @@ export default function AdSense({ slot, style }: { slot: string; style?: React.C
 
   return (
     <ins
+      ref={adRef}
       className="adsbygoogle"
       style={style ?? { display: "block" }}
       data-ad-client="ca-pub-1776553000817606"
@@ -31,14 +42,12 @@ export default function AdSense({ slot, style }: { slot: string; style?: React.C
   );
 }
 
-/* You can map all slot names here */
 function getSlot(slotName: string) {
   const slots: Record<string, string> = {
-    "top-banner": "1234567890",
-    "right-sidebar": "1234567891",
-    "after-editor": "1234567892",
-    "footer-ad": "1234567893",
+    "top-banner": "7743658022",
+    "right-sidebar": "5372645558",
+    "after-editor": "6430576354",
+    "footer-ad": "4059563881",
   };
-
-  return slots[slotName] || "1234567890"; // fallback slot
+  return slots[slotName] || "1234567890";
 }

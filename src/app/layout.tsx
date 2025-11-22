@@ -5,6 +5,7 @@ import { Providers } from "./providers";
 import Link from "next/link";
 import ThemeToggle from "../components/ThemeToggal";
 import Script from "next/script";
+import AdSense from "@/components/AdSense";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.quickjson.net"),
@@ -98,11 +99,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </header>
 
           {/* Top banner ad (A) - server-rendered component so ad slot is present */}
-          {/* <div className="container mx-auto px-4 mt-4">
+          <div className="container mx-auto px-4 mt-4">
             <div className="flex justify-center">
-              <AdSense slot="top-banner" />
+              <AdSense slot="footer-ad" />
             </div>
-          </div> */}
+          </div>
 
           {/* Main container: children contains page content (page.tsx) */}
           <main className="container mx-auto px-4 py-10">{children}</main>
