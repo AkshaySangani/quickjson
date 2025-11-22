@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Metadata } from "next"
-import JsonFormatter from "../components/JSONCodeMirror"
+import EditorWrapper from "@/components/EditorWrapper"
 
 export const metadata: Metadata = {
   title:
@@ -67,7 +67,7 @@ export default function HomePage() {
 
       {/* ✅ Main JSON Tool */}
       <section className="bg-white dark:bg-gray-900 shadow-xl rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 mt-8">
-        <JsonFormatter />
+        <EditorWrapper />
       </section>
 
       {/* ✅ Tool CTA */}
