@@ -67,10 +67,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       </head>
 
-      <body className="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300">
+      <body className="transition-colors duration-300">
         <Providers>
-          {/* Header */}
-          <header className="border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur">
+          {/* ✅ Header */}
+          <header className="border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50  dark:bg-gray-950 backdrop-blur">
             <nav
               className="container mx-auto flex flex-wrap items-center justify-between px-4 py-4"
               aria-label="Main Navigation"
@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/about" className="hover:underline" title="About">
                   About
                 </Link>
-                <ThemeToggle />
+                {/* <ThemeToggle /> */}
               </div>
             </nav>
           </header>

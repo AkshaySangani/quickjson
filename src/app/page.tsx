@@ -1,10 +1,10 @@
 import Link from "next/link"
 import { Metadata } from "next"
-import EditorWrapper from "@/components/EditorWrapper"
+import JsonFormatterClient from "../components/JsonFormatterClient"
 
 export const metadata: Metadata = {
   title:
-    "JSON Formatter | Free Online JSON Beautifier, Validator - QuickJSON",
+    "JSON Formatter | Free Online JSON Beautifier, Validator",
   description:
     "Format, beautify, minify, and validate JSON instantly with our free online JSON Formatter. QuickJSON is fast, secure, and runs completely in your browser.",
   keywords: [
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
     canonical: "https://www.quickjson.net/",
   },
   openGraph: {
-    title: "JSON Formatter - Free Online Beautifier & Validator",
+    title: "JSON Formatter | Free Online JSON Beautifier, Validator",
     description:
-      "Free online JSON formatter and beautifier. Format and validate JSON data instantly with QuickJSON.",
+      "Format, beautify, minify, and validate JSON instantly with our free online JSON Formatter. QuickJSON is fast, secure, and runs completely in your browser.",
     url: "https://www.quickjson.net/",
     siteName: "QuickJSON",
     images: [
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <main className="max-w-6xl mx-auto px-4 py-12">
+    <main className="mx-auto px-4 py-12">
       {/* ✅ Hero Section */}
       <header className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
@@ -66,15 +66,15 @@ export default function HomePage() {
       </p>
 
       {/* ✅ Main JSON Tool */}
-      <section className="bg-white dark:bg-gray-900 shadow-xl rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 mt-8">
-        <EditorWrapper />
+      <section className="mt-8">
+        <JsonFormatterClient />
       </section>
 
       {/* ✅ Tool CTA */}
       <div className="text-center mt-8">
         <Link
           href="/tools"
-          className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition"
+          className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-red-400 text-white font-medium rounded-lg transition"
         >
           Explore All JSON Tools
         </Link>
@@ -160,7 +160,7 @@ export default function HomePage() {
       </section>
 
       <p className="text-center text-sm opacity-70 mt-12">
-        Last updated: October 2025
+        Last updated: November 2025
       </p>
 
       {/* ✅ Schema.org Structured Data */}

@@ -19,7 +19,7 @@ export default function SunMoonToggle({ setTheme, theme }: { setTheme: (theme: s
       <div className="relative w-8 h-8">
         {/* Sun */}
         <svg
-          className={`absolute inset-0 w-8 h-8 transform transition-all duration-500 ${theme === "dark" ? "opacity-0 scale-50 rotate-90" : "opacity-100 scale-100 rotate-0"}`}
+          className={`absolute inset-0 w-8 h-8 transform transition-all duration-500 ${theme !== "dark" ? "opacity-0 scale-50 rotate-90" : "opacity-100 scale-100 rotate-0"}`}
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@ export default function SunMoonToggle({ setTheme, theme }: { setTheme: (theme: s
           <circle cx="12" cy="12" r="4" className="fill-yellow-400 dark:fill-yellow-300" />
 
           {/* rays */}
-          <g className={`transition-all duration-700 transform ${theme === "dark" ? "opacity-0 scale-75" : "opacity-100 scale-100"}`}>
+          <g className={`transition-all duration-700 transform ${theme !== "dark" ? "opacity-0 scale-75" : "opacity-100 scale-100"}`}>
             <path d="M12 1v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-yellow-400 dark:text-yellow-300" />
             <path d="M12 21v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-yellow-400 dark:text-yellow-300" />
             <path d="M4.22 4.22l1.42 1.42" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-yellow-400 dark:text-yellow-300" />
@@ -41,7 +41,7 @@ export default function SunMoonToggle({ setTheme, theme }: { setTheme: (theme: s
 
         {/* Moon */}
         <svg
-          className={`absolute inset-0 w-8 h-8 transform transition-all duration-500 ${theme === "dark" ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-50 -rotate-45"}`}
+          className={`absolute inset-0 w-8 h-8 transform transition-all duration-500 ${theme !== "dark" ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-50 -rotate-45"}`}
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@ export default function SunMoonToggle({ setTheme, theme }: { setTheme: (theme: s
           <g className="transition-transform duration-700">
             <path
               d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
-              fill="white"
+              fill="black"
               className="text-gray-900 dark:text-gray-100"
             />
           </g>

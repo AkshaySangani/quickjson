@@ -5,6 +5,9 @@ import { json } from "@codemirror/lang-json";
 import { oneDark } from "@codemirror/theme-one-dark";
 import { bracketMatching } from "@codemirror/language";
 import { closeBrackets } from "@codemirror/autocomplete";
+import Modal from "./common/Modal";
+import FileUploadBox from "./common/FileUploadBox";
+import Button from "./common/Button";
 
 export default function JsonFormatter() {
   const inputRef = useRef<HTMLDivElement | null>(null);
@@ -15,6 +18,11 @@ export default function JsonFormatter() {
   const outputEditor = useRef<EditorView | null>(null);
 
   const [isTreeMode, setIsTreeMode] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [urlError, setUrlError] = useState<string | null>(null);
+  const [url, setUrl] = useState<string>("");
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   // Initialize editors
   useEffect(() => {
@@ -27,7 +35,7 @@ export default function JsonFormatter() {
     });
 
     inputEditor.current = new EditorView({
-      doc: '{\n  "mills": "json",\n  "fiberline": "KNF2"\n}',
+      doc: '',
       extensions: [
         basicSetup,
         json(),
@@ -66,6 +74,14 @@ export default function JsonFormatter() {
       changes: {
         from: 0,
         to: outputEditor.current.state.doc.length,
+        insert: text,
+      },
+    });
+  const setInput = (text: string) =>
+    inputEditor.current?.dispatch({
+      changes: {
+        from: 0,
+        to: inputEditor.current.state.doc.length,
         insert: text,
       },
     });
@@ -172,7 +188,7 @@ export default function JsonFormatter() {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(getOutput());
-        setOutput("✅ Copied to clipboard");
+      setOutput("✅ Copied to clipboard");
     } catch {
       setOutput("❌ Failed to copy JSON");
     }
@@ -187,8 +203,70 @@ export default function JsonFormatter() {
     link.click();
   };
 
+  const handleUpload = (file: any) => {
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const content = event.target?.result;
+        if (typeof content === "string") {
+          setInput(content);
+        }
+      };
+      setUploadedFile(file);
+      reader.readAsText(file);
+    }
+  }
+
+  const handleOpenUploadModal = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseUploadModal = () => {
+    setIsOpen(false);
+  };
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const url = e.target.value;
+
+  let isValid = true;
+
+  try {
+    new URL(url);        // If invalid, it will throw
+  } catch {
+    isValid = false;
+  }
+
+  if (!isValid) {
+    setUrlError("Please enter a valid URL.");
+    setUrl(url);
+  } else {
+    setUrlError(null);
+    setUrl(url);
+  }
+};
+
+const handleSubmitUrl = async () => {
+  setLoading(true);
+  try {
+    const response = await fetch(url || "");
+    if (!response.ok) {
+      setUrlError("Failed to fetch JSON from the provided URL.");
+      return;
+    }
+    const data = await response.text();
+    setInput(data);
+    setIsOpen(false);
+    setUrl("");
+  } catch (error) {
+    setUrlError("Failed to fetch JSON from the provided URL.");
+  } finally {
+    setLoading(false);
+  }
+}
+
+
   return (
-    <div className="flex flex-col md:flex-row h-[calc(100vh-120px)] bg-gray-100">
+    <div className="flex flex-col md:flex-row h-[calc(100vh-120px)] shadow-xl rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 mt-8 ">
       {/* Input JSON */}
       <div className="flex-1 border-r bg-white flex flex-col overflow-hidden">
         <div className="bg-gray-800 text-white px-3 py-2 font-semibold">
@@ -198,15 +276,15 @@ export default function JsonFormatter() {
       </div>
 
       {/* Center Controls */}
-      <div className="w-full md:w-72 bg-[#009688] flex flex-col justify-center items-center gap-3 p-5">
-        <button onClick={handleValidate} className="btn">Validate</button>
-        <button onClick={handleBeautify} className="btn">Beautify</button>
-        <button onClick={handleMinify} className="btn">Minify</button>
-        {/* <button onClick={handleTreeView} className="btn">Tree</button> */}
-        <button onClick={handleToObject} className="btn">JSON → Object</button>
-        <button onClick={handleReverse} className="btn">Reverse JSON</button>
-        <button onClick={handleCopy} className="btn">Copy JSON</button>
-        <button onClick={handleDownload} className="btn">Download</button>
+      <div className="w-full md:w-56 flex flex-col justify-center items-center gap-3 p-5">
+        <Button key={"validate"} onClick={handleValidate} className="w-full p-2" text="Validate" />
+        <Button key={"beautify"} onClick={handleBeautify} className="w-full p-2" text="Beautify" />
+        <Button key={"minify"} onClick={handleMinify} className="w-full p-2" text="Minify" />
+        <Button key={"toObject"} onClick={handleToObject} className="w-full p-2" text="JSON → Object" />
+        <Button key={"reverse"} onClick={handleReverse} className="w-full p-2" text="Reverse JSON" />
+        <Button key={"copy"} onClick={handleCopy} className="w-full p-2" text="Copy JSON" />
+        <Button key={"download"} onClick={handleDownload} className="w-full p-2" text="Download" />
+        <Button key={"upload"} onClick={handleOpenUploadModal} className="w-full p-2" text="Upload JSON" />
       </div>
 
       {/* Output / Tree */}
@@ -229,21 +307,34 @@ export default function JsonFormatter() {
           <div ref={jsonTreeRef} className="flex-1 overflow-auto p-2" />
         )}
       </div>
-
-      <style jsx>{`
-        .btn {
-          width: 100%;
-          background: white;
-          color: #009688;
-          font-weight: 600;
-          padding: 8px 0;
-          border-radius: 8px;
-          transition: background 0.2s;
-        }
-        .btn:hover {
-          background: #e7e7e7;
-        }
-      `}</style>
+      <Modal isOpen={isOpen} onClose={handleCloseUploadModal} title="Upload JSON File or Paste URL">
+        <div className="space-y-4">
+          <div className="flex flex-col space-y-2 justify-center items-center">
+            <div className="w-full">
+            <input type="url" value={url} placeholder="Paste URL here" className="w-full p-2 text-black border-1 border-gray-300 focus:border-gray-300 rounded-md" onChange={handleOnChange}/>
+            {urlError && <p className="text-red-500 text-sm">{urlError}</p>}
+            </div>
+            <Button className="w-20 p-2" loading={loading} onClick={handleSubmitUrl} text="Submit" />
+          </div>
+          <div className="flex items-center justify-center gap-4 my-4 md:my-6 lg:my-6">
+            <div className="flex-1 h-px bg-gray-300" />
+            <span className="text-sm text-gray-500 whitespace-nowrap">
+              {"Or upload a file"}
+            </span>
+            <div className="flex-1 h-px bg-gray-300" />
+          </div>
+          <FileUploadBox
+            uploadedFile={uploadedFile}
+            handleUploadFile={(uploadedFile) => {
+              if (uploadedFile) {
+                handleUpload(uploadedFile);
+                setIsOpen(false);
+              }
+            }}
+          />
+        </div>
+      </Modal>
+      
     </div>
   );
 }
