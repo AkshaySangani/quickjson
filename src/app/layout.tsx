@@ -70,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="transition-colors duration-300">
         <Providers>
           {/* ✅ Header */}
-          <header className="border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50  bg-gray-100 backdrop-blur">
+          <header className="border-b border-gray-200 sticky top-0 z-50  backdrop-blur">
             <nav
               className="container mx-auto flex flex-wrap items-center justify-between px-4 py-4"
               aria-label="Main Navigation"
