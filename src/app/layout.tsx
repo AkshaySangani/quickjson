@@ -90,7 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/tools" className="hover:underline" title="All Developer Tools">
                   Tools
                 </Link>
-                <Link href="/about" className="hover:underline" title="About">
+                <Link href="/about-us" className="hover:underline" title="About">
                   About
                 </Link>
                 {/* <ThemeToggle /> */}
@@ -139,7 +139,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about" className="hover:underline">
+                      <Link href="/about-us" className="hover:underline">
                         About Us
                       </Link>
                     </li>
@@ -160,7 +160,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       </Link>
                     </li>
                     <li>
-                      <Link href="/contact" className="hover:underline">
+                      <Link href="/contact-us" className="hover:underline">
                         Contact
                       </Link>
                     </li>
